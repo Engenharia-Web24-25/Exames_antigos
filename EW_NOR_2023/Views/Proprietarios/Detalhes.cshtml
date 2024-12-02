@@ -1,0 +1,45 @@
+﻿@model EW_NOR_2023.Models.Proprietario
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<h1>Veículos propriedade de</h1>
+<h2>@Html.DisplayFor(model => model.Nome)</h2>
+
+<a asp-action="Adicionar" asp-controller="Veiculos" asp-route-id="@Model.Id">Adicionar veículo</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Matrícula
+            </th>
+            <th>
+                Marca
+            </th>
+            <th>
+                Modelo
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Veiculos)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Matricula)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Marca)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Modelo)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>

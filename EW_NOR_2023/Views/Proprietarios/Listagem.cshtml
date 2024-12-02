@@ -1,0 +1,42 @@
+﻿@model IEnumerable<EW_NOR_2023.Models.Proprietario>
+
+@* <p>
+    <a asp-action="Create">Create New</a>
+</p> *@
+<table id="tabela" class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Ordena" asp-controller="Proprietarios"
+                data-ajax="true" data-ajax-method="get" data-ajax-mode="replace" data-ajax-update="#tabela"
+                >@Html.DisplayNameFor(model => model.Nome)</a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nacionalidade)
+            </th>
+            <th>
+                Veículos
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nacionalidade)
+                </td>
+                <td>
+                    @item.Veiculos.Count()
+                </td>
+                <td>
+                    <a asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a>
+                </td>
+             </tr>
+        }
+    </tbody>
+</table>
