@@ -1,0 +1,54 @@
+﻿@model IEnumerable<EW_NOR_2024.Models.RegistoUtilizador>
+
+<table class="table" id="Caixa">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Regime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Valido)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Regime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valido)
+            </td>
+            <td>
+                @if (Context.Session.Keys.Contains("estado") && Context.Session.GetString("estado") == "editar")
+                {
+
+                    @if(item.Valido == true)
+                    {
+                        <a asp-action="Invalida" asp-route-id="@item.RegistoId" class="btn btn-outline-danger"
+                        data-ajax="true" data-ajax-method="get" data-ajax-mode="replace" data-ajax-update="#Caixa"
+                        >Invalida</a>
+                    }
+                    else
+                    {
+                        <a asp-action="Valida" asp-route-id="@item.RegistoId" class="btn btn-outline-primary"
+                        data-ajax="true" data-ajax-method="get" data-ajax-mode="replace" data-ajax-update="#Caixa"
+                        >Valida</a>
+                    }
+                }
+                @*     <a asp-action="Edit" asp-route-id="@item.RegistoId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.RegistoId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.RegistoId">Delete</a> *@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
